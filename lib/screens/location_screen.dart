@@ -26,6 +26,13 @@ class _LocationScreenState extends State<LocationScreen> {
 
   void updateUI(dynamic weatherData) {
     setState(() {
+      if (weatherData == null) {
+        temperature = 0;
+        weatherIcon = 'Error';
+        message = "unable to find location";
+        cityName = '';
+        return;
+      }
       double temp = weatherData['main']['temp'];
       cityName = weatherData['name'];
       var condition = weatherData['weather'][0]['id'];
